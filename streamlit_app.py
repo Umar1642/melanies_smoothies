@@ -3,17 +3,9 @@ import snowflake.connector
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col
 
-connection_parameters = {
-    "account": st.secrets["snowflake"]["account"],
-    "user": st.secrets["snowflake"]["user"],
-    "password": st.secrets["snowflake"]["password"],
-    "role": st.secrets["snowflake"]["role"],
-    "warehouse": st.secrets["snowflake"]["warehouse"],
-    "database": st.secrets["snowflake"]["database"],
-    "schema": st.secrets["snowflake"]["schema"],
-}
+conn = st.connection("snowflake")
+session = conn.session()
 
-session = Session.builder.configs(connection_parameters).create()
 
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
 st.write("Choose the fruits you want in your custom Smoothie!")
